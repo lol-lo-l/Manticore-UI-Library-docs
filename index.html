@@ -1,0 +1,173 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    h1 {
+        font-size: 20px;
+        color: white;
+    }
+
+    h2 {
+        font-size: 50px;
+        color: white;
+    }
+
+    body {
+    background: linear-gradient(-45deg, #1c2f7a, #5e165e);
+    background-size: 400% 400%;
+    animation: GRADIENTBG 5s ease infinite;
+}
+
+@keyframes GRADIENTBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+</style>
+<body>
+    <center>
+    <h2>load library</h2>
+    <h1>local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/frayray909090/Manticore-ui-lib/main/ManticoreUI.lua"))()
+    </h1>
+    <h2>Theme and title</h2>
+    <h1>local Window = Library.CreateLib("TITLE", "DarkTheme")</h1>
+    <h2>themes</h2>
+    <h1>
+        Subaru
+        Manticore
+        Synapse
+        Sentinel
+        Midnight
+        Ocean
+        BloodTheme
+    </h1>
+    <h2>Creating tabs</h2>
+    <h1>local Tab = Window:NewTab("TabName")</h1>
+    <h2>creating section</h2>
+    <h1>local Section = Tab:NewSection("Section Name")</h1>
+    <h2>Update section</h2>
+    <h1>Section:UpdateSection("Section New Title")</h1>
+    <h2>creating labels</h2>
+    <h1>Section:NewLabel("LabelText")</h1>
+    <h2>update labels</h2>
+    <h1>label:UpdateLabel("New Text")</h1>
+    <h2>creating buttons</h2>
+    <h1>
+    Section:NewButton("ButtonText", "ButtonInfo", function()
+        print("Clicked")
+    end)
+    </h1>
+    <h2>update button</h2>
+    <h1>make sure your buttons are local when updating it</h1>
+    <h1>button:UpdateButton("New Text")</h1>
+    <h2>creating toggles</h2>
+    <h1>
+    Section:NewToggle("ToggleText", "ToggleInfo", function(state)
+        if state then
+            print("Toggle On")
+        else
+            print("Toggle Off")
+        end
+    end)
+    </h1>
+    <h2>updating toggles</h2>
+    <h1>
+    getgenv().Toggled = false
+
+        local toggle = Section:NewToggle("Toggle", "Info", (state)
+            getgenv().Toggled = state
+        end)
+        
+        game:GetService("RunService").RenderStepped:Connect(function()
+            if getgenv().Toggled then
+                toggle:UpdateToggle("Toggle On")
+            else
+                toggle:UpdateToggle("Toggle Off")
+            end
+        end)</h1>
+    <h2>creating sliders</h2>
+    <h1>
+    Section:NewSlider("SliderText", "SliderInfo", 500, 0, function(s) -- 500 (MaxValue) | 0 (MinValue)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+    end)</h1>
+    <h2>creating textboxes</h2>
+    <h1>
+    Section:NewTextBox("TextboxText", "TextboxInfo", function(txt)
+        print(txt)
+    end)
+    </h1>
+    <h2>creating keybinds</h2>
+    <h1>
+    Section:NewKeybind("KeybindText", "KeybindInfo", Enum.KeyCode.F, function()
+        print("You just clicked the bind")
+    end)</h1>
+    <h2>toggling with keybinds</h2>
+    <h1>
+    Section:NewKeybind("KeybindText", "KeybindInfo", Enum.KeyCode.F, function()
+        Library:ToggleUI()
+    end)</h1>
+    <h2>creating dropdowns</h2>
+    <h1>
+    Section:NewDropdown("DropdownText", "DropdownInf", {"Option 1", "Option 2", "Option 3"}, function(currentOption)
+        print(currentOption)
+    end)
+    </h1>
+    <h2>dropdown refresh</h2>
+    <h1>
+    local oldList = {
+        "2019",
+        "2020"
+      }
+      local newList = {
+        "2021",
+        "2022"
+      }
+      local dropdown = Section:NewDropdown("Dropdown","Info", oldList, function()
+      
+      end)
+      Section:NewButton("Update Dropdown", "Refreshes Dropdown", function()
+        dropdown:Refresh(newList)
+      end)</h1>
+      <h2>creating color picker</h2>
+      <h1>
+    Section:NewColorPicker("Color Text", "Color Info", Color3.fromRGB(0,0,0), function(color)
+        print(color)
+        -- Second argument is the default color
+    end)</h1>
+    <h2>applying custom themes / colors</h2>
+    <h1>making new table, here you are going to put your colors, as shown below.</h1>
+    <h1>
+    local colors = {
+        SchemeColor = Color3.fromRGB(0,255,255),
+        Background = Color3.fromRGB(0, 0, 0),
+        Header = Color3.fromRGB(0, 0, 0),
+        TextColor = Color3.fromRGB(255,255,255),
+        ElementColor = Color3.fromRGB(20, 20, 20)
+    }</h1>
+    <h1>applying it: change your windows code little bit</h1>
+    <h1>local Window = Library.CreateLib("TITLE", colors)</h1>
+    <h2>want to add fully customizable ui?</h2>
+    <h1>add this code in your section. this will create a color pickers.</h1>
+    <h1>Make sure you have added table with all the values of UI. then apply it to window. Like shown above.</h1>
+    <h1>
+    for theme, color in pairs(themes) do
+        Section:NewColorPicker(theme, "Change your "..theme, color, function(color3)
+            Library:ChangeColor(theme, color3)
+        end)
+    end
+    </h1>
+</center>
+</body>
+</html>
